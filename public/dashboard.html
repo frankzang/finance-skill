@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <h1>Dashboard</h1>
+    <button id="sign-out">Sair</button>
+    <label for="search">Nome</label>
+    <input type="text" id="search" list="tickets">
+    <datalist id="tickets">
+    </datalist>
+    <button id="add">Adicionar</button>
+
+    <h2>Meus tickets</h2>
+    <ul id="tickets-list">
+    </ul>
+</body>
+
+<script src="./scripts/firebase-config.js" type="module"></script>
+<script src="./scripts/redirect.js" type="module"></script>
+<script src="./scripts/dashboard.js" type="module"></script>
+
+</html>
