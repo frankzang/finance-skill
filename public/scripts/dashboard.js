@@ -32,10 +32,12 @@ const safeGetUser = async () => {
 
 const startApp = async () => {
   const user = await safeGetUser();
-
   const userDocRef = doc(db, 'users', user.uid);
   const docSnap = await getDoc(userDocRef);
   const ticketsList = document.querySelector('#tickets-list');
+  const searchInput = document.querySelector('#search');
+  const tickets = document.querySelector('#tickets');
+  const addBtn = document.querySelector('#add');
 
   onSnapshot(userDocRef, (doc) => {
     const docData = doc.data();
@@ -44,7 +46,6 @@ const startApp = async () => {
     ticketsList.innerHTML = '';
 
     const { tickets } = docData;
-    console.log({ docData });
 
     tickets.forEach((ticket) => {
       const ticketData = data.tickets.find((t) => t.issuingCompany === ticket);
@@ -60,18 +61,11 @@ const startApp = async () => {
     });
   });
 
-  if (docSnap.exists()) {
-    console.log('Document data:', docSnap.data());
-  } else {
-    // Create user
+  if (!docSnap.exists()) {
     await setDoc(doc(usersCollection, user.uid), {
       email: user.email,
     });
   }
-
-  const searchInput = document.querySelector('#search');
-  const tickets = document.querySelector('#tickets');
-  const addBtn = document.querySelector('#add');
 
   data.tickets.forEach((ticket) => {
     const optionElm = document.createElement('option');
@@ -91,6 +85,8 @@ const startApp = async () => {
     await updateDoc(userDocRef, {
       tickets: arrayUnion(value),
     });
+
+    searchInput.value = '';
   });
 
   ticketsList.addEventListener('click', async (evt) => {

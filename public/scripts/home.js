@@ -1,7 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signInWithPopup,
+  signInWithRedirect,
   GoogleAuthProvider,
 } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js';
 import { auth } from './firebase-config.js';
@@ -57,8 +57,9 @@ toggleFormBtn.addEventListener('click', () => {
 
 googleLoginBtn.addEventListener('click', async () => {
   try {
-    await signInWithPopup(auth, provider);
+    await signInWithRedirect(auth, provider);
   } catch (error) {
+    console.log({ error });
     showAlertDialog({ title: 'Algo deu errado...' });
   }
 });

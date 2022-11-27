@@ -4,10 +4,10 @@ import { auth } from './firebase-config.js';
 onAuthStateChanged(auth, (user) => {
   const { pathname } = window.location;
   const isHome = pathname === '/';
-  const isDashboard = pathname === '/dashboard';
+  const isDashboard = pathname.includes('dashboard');
 
   if (isHome && user) {
-    window.location.href = '/dashboard';
+    window.location.href = `${window.location.origin}/dashboard.html`;
 
     return;
   }
