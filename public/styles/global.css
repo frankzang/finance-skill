@@ -12,3 +12,28 @@ body {
     border-bottom: 1px solid white;
     margin: 2rem 0px;
 }
+
+dialog {
+    border: none;
+    border-radius: 1rem;
+    width: 90%;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+dialog h2 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+dialog button {
+    border: none;
+    border-radius: 2rem;
+    background-color: #047de8;
+    padding: .8rem 2rem;
+    color: white;
+    text-transform: uppercase;
+}
