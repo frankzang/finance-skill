@@ -41,21 +41,28 @@ const startApp = async () => {
 
   onSnapshot(userDocRef, (doc) => {
     const docData = doc.data();
-    if (!docData?.tickets) return;
-
-    ticketsList.innerHTML = '';
+    if (!docData?.tickets) {
+      return;
+    }
 
     const { tickets } = docData;
 
     tickets.forEach((ticket) => {
+      if (document.querySelector(`li[data-ticket-id="${ticket}"]`)) return;
+
       const ticketData = data.tickets.find((t) => t.issuingCompany === ticket);
       const li = document.createElement('li');
       const removeBtn = document.createElement('button');
+      const img = document.createElement('img');
 
+      img.src = '../images/delete-icon.svg';
+      img.alt = 'Remover ativo';
+      removeBtn.appendChild(img);
       removeBtn.setAttribute('data-ticket', ticket);
-      removeBtn.textContent = 'Remover';
-      li.textContent = `${ticket} - ${ticketData.companyName}`;
+      removeBtn.title = 'Remover ativo';
+      li.innerHTML = `<span>${ticket}</span><span>${ticketData.companyName}</span>`;
       li.append(removeBtn);
+      li.setAttribute('data-ticket-id', ticket);
 
       ticketsList.appendChild(li);
     });
@@ -82,17 +89,19 @@ const startApp = async () => {
 
     if (!asset) return;
 
+    searchInput.value = '';
+
     await updateDoc(userDocRef, {
       tickets: arrayUnion(value),
     });
-
-    searchInput.value = '';
   });
 
   ticketsList.addEventListener('click', async (evt) => {
     const ticket = evt.target.dataset.ticket;
 
     if (!ticket) return;
+
+    evt.target.parentElement.remove();
 
     await updateDoc(userDocRef, {
       tickets: arrayRemove(ticket),
