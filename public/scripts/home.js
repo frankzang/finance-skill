@@ -9,7 +9,8 @@ import { showAlertDialog } from './utils.js';
 
 const createAccountForm = document.querySelector('#create-account-form');
 const loginForm = document.querySelector('#login-form');
-const toggleFormBtn = document.querySelector('#toggle-form');
+const toggleFormLogin = document.querySelector('#toggle-form-login');
+const toggleFormCreate = document.querySelector('#toggle-form-create');
 const googleLoginBtn = document.querySelector('#google-login');
 const provider = new GoogleAuthProvider();
 
@@ -41,18 +42,13 @@ loginForm.addEventListener('submit', async (evt) => {
   }
 });
 
-toggleFormBtn.addEventListener('click', () => {
-  const isCreateAccountHidden = createAccountForm.hasAttribute('hidden');
-
-  if (isCreateAccountHidden) {
-    loginForm.setAttribute('hidden', '');
-    createAccountForm.removeAttribute('hidden');
-    toggleFormBtn.innerText = 'Já tenho uma conta';
-  } else {
-    createAccountForm.setAttribute('hidden', '');
-    loginForm.removeAttribute('hidden');
-    toggleFormBtn.innerText = 'Criar conta';
-  }
+toggleFormCreate.addEventListener('click', () => {
+  loginForm.setAttribute('hidden', '');
+  createAccountForm.removeAttribute('hidden');
+});
+toggleFormLogin.addEventListener('click', () => {
+  createAccountForm.setAttribute('hidden', '');
+  loginForm.removeAttribute('hidden');
 });
 
 googleLoginBtn.addEventListener('click', async () => {

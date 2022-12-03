@@ -6,39 +6,51 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Finance Skill</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/reset.css">
+  <link rel="stylesheet" href="./styles/home.css">
 </head>
 
 <body>
-  <form id="login-form" hidden>
-    Login
-    <label for="email">
-      Email
-      <input type="email" required name="email">
-    </label>
-    <label for="password">
-      Senha
-      <input type="password" required name="password" minlength="8">
-    </label>
-    <button>Continuar</button>
-  </form>
-  <form id="create-account-form">
-    Criar conta
-    <label for="email">
-      Email
-      <input type="email" required name="email">
-    </label>
-    <label for="password">
-      Senha
-      <input type="password" required name="password" minlength="8">
-    </label>
-    <button>Continuar</button>
-  </form>
-  <button id="google-login">Entrar com o Google</button>
-  <button id="toggle-form">Já tenho uma conta</button>
-  <script src="./scripts/firebase-config.js" type="module"></script>
-  <script src="./scripts/utils.js" type="module"></script>
-  <script src="./scripts/home.js" type="module"></script>
-  <script src="./scripts/redirect.js" type="module"></script>
+  <div class="container">
+    <img class="logo" src="./images/logo.png" alt="">
+    <form id="login-form" hidden class="form">
+      <h1>Bem-vindo à Finance Skill!</h1>
+      <h2>Entrar</h2>
+      <label for="email">
+        Email
+      </label>
+      <input type="email" required name="email" id="email">
+      <label for="password">
+        Senha
+      </label>
+      <input type="password" required name="password" id="password" minlength="8">
+      <button>entrar</button>
+      <button type="button" id="toggle-form-create">Criar uma nova conta</button>
+    </form>
+    <form id="create-account-form" class="form">
+      <h1>Bem-vindo à Finance Skill!</h1>
+      <h2>Cadastre-se</h2>
+      <label for="email">
+        Email
+      </label>
+      <input type="email" required name="email" id="email">
+      <label for="password">
+        Senha
+      </label>
+      <input type="password" required name="password" id="password" minlength="8">
+      <button>Criar conta</button>
+      <button type="button" id="toggle-form-login">Já tenho uma conta</button>
+      <div class="divider"></div>
+      <button type="button" id="google-login">Entrar com o Google</button>
+    </form>
+    <script src="./scripts/firebase-config.js" type="module"></script>
+    <script src="./scripts/utils.js" type="module"></script>
+    <script src="./scripts/home.js" type="module"></script>
+    <script src="./scripts/redirect.js" type="module"></script>
+  </div>
 </body>
 
 </html>
