@@ -22,7 +22,7 @@ createAccountForm.addEventListener('submit', async (evt) => {
 
     await createUserWithEmailAndPassword(auth, email, password);
 
-    window.location.href = '/dashboard';
+    window.location.href = `${window.location.origin}/dashboard.html`;
   } catch (error) {
     showAlertDialog({ title: 'Algo deu errado...' });
   }
@@ -36,9 +36,9 @@ loginForm.addEventListener('submit', async (evt) => {
 
     await signInWithEmailAndPassword(auth, email, password);
 
-    window.location.href = '/dashboard';
+    window.location.href = `${window.location.origin}/dashboard.html`;
   } catch (error) {
-    showAlertDialog({ title: error.code });
+    showAlertDialog({ title: 'Algo deu errado...' });
   }
 });
 
